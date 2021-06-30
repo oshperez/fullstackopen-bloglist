@@ -1,0 +1,9 @@
+PUT http://localhost:3003/api/blogs/60dbf1e4b3d7b33588a9b854
+Content-Type: application/json
+
+{
+  "title": "iaculis congue vivamus metus",
+  "author": "Riky Montana",
+  "url": "https://caligari.org/nakinaki",
+  "likes": 888900
+}

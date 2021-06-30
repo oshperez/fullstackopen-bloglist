@@ -4,21 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "jest --verbose"
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
+    "populate:db": "cross-env NODE_ENV=development node utils/populate_db.js"
   },
   "author": "Osmani Hernandez Perez",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
     "mongoose": "^5.12.15"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "jest": "^27.0.5",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3"
   },
   "jest": {
     "testEnvironment": "node"
