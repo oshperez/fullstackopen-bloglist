@@ -2,8 +2,8 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-  "title": "node blog",
-  "author": "node dev",
-  "urls": "nodeblog.com",
-  "likes": 1000
+ "title": "Mongoose makes using MongoDB easier",
+ "author": "Ronald Popper",
+ "url": "devfyi.com/blog/blog_30",
+ "likes": 8000
 }
