@@ -1,6 +1,8 @@
+const jwt = require("jsonwebtoken");
 const blogsRouter = require("express").Router();
 const Blog = require("../models/blog");
 const User = require("../models/user");
+const middleware = require("../utils/middleware");
 
 // Get all blogs
 blogsRouter.get("/", async (request, response) => {
@@ -9,18 +11,16 @@ blogsRouter.get("/", async (request, response) => {
 });
 
 // Add a new blog
-blogsRouter.post("/", async (request, response) => {
+blogsRouter.post("/", middleware.userExtractor, async (request, response) => {
   const body = request.body;
+  const decodedToken = request.user;
   if (!body.title || !body.url) {
-    return response.status(400).json({ error: "missing title and/or url" });
+    return response.status(400).json({ error: "title or url missing" });
   }
-
   if (!body.likes) {
     body.likes = 0;
   }
-  const count = await User.countDocuments();
-  const random = Math.floor(Math.random() * count);
-  const user = await User.findOne().skip(random);
+  const user = await User.findById(decodedToken.id);
 
   const newBlog = { ...body, user: user.id };
 
@@ -44,11 +44,22 @@ blogsRouter.put("/:id", async (request, response) => {
 });
 
 // Remove a blog
-blogsRouter.delete("/:id", async (request, response) => {
-  const id = request.params.id;
+blogsRouter.delete(
+  "/:id",
+  middleware.userExtractor,
+  async (request, response) => {
+    const user = request.user;
 
-  await Blog.findByIdAndRemove(id);
-  response.status(204).end();
-});
+    const id = request.params.id;
+    const blog = await Blog.findById(id);
+
+    if (!(blog.user.toString() === user.id.toString())) {
+      return response.status(401).json({ error: "unauthorized token" });
+    }
+
+    await Blog.findByIdAndRemove(id);
+    response.status(204).end();
+  }
+);
 
 module.exports = blogsRouter;

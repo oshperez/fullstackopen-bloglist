@@ -1,9 +1,10 @@
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImZyZnJlZW1hbiIsImlkIjoiNjBkZjc1NTQzNTkxNjE0M2Q0ZTJlYjhiIiwiaWF0IjoxNjI1NjA0MzM4fQ.8RXzhXUIjwy5jG5Pi5gUwmIQlH60B8NrZpG_DKYX-3U
 
 {
- "title": "Mongoose makes using MongoDB easier",
- "author": "Ronald Popper",
- "url": "devfyi.com/blog/blog_30",
- "likes": 8000
+ "title": "Node middlewares",
+ "author": "Viktor Pavlov",
+ "url": "nerdev.com/node_middlewares",
+ "likes": 2000
 }

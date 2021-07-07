@@ -5,25 +5,25 @@ initialBlogs = [
   {
     title: "iaculis congue vivamus metus arcu adipiscing molestie hendrerit",
     author: "Channa Rodgman",
-    url: "http://wired.com/viverra.jpg",
+    url: "http://wired.com",
     likes: 99780,
   },
   {
     title: "ut odio cras mi pede",
     author: "Vincenz Alenichicov",
-    url: "http://squarespace.com/odio/curabitur/convallis/duis/consequat.jpg",
+    url: "http://squarespace.com/odio/curabitur/convallis/duis",
     likes: 33053,
   },
   {
     title: "quis lectus suspendisse",
     author: "Rusty Baford",
-    url: "https://answers.com/aliquet/at/feugiat/non/pretium/quis/lectus.png",
+    url: "https://answers.com/aliquet/at/feugiat/non/pretium",
     likes: 60532,
   },
   {
     title: "diam neque vestibulum eget",
     author: "Windham Donwell",
-    url: "http://dailymotion.com/cubilia/curae/nulla.xml",
+    url: "http://dailymotion.com/cubilia/curae",
     likes: 98463,
   },
 ];
