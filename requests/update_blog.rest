@@ -1,9 +1,9 @@
-PUT http://localhost:3003/api/blogs/60dbf1e4b3d7b33588a9b854
+PUT http://localhost:3003/api/blogs/60e8c1bc89ffa44a649ccf6f
 Content-Type: application/json
 
 {
-  "title": "iaculis congue vivamus metus",
-  "author": "Riky Montana",
-  "url": "https://caligari.org/nakinaki",
-  "likes": 888900
+  "title": "Jest: a testing library",
+  "author": "Ricky Montana",
+  "url": "https://dev.com/Jest_a_testing_library",
+  "likes": 100
 }

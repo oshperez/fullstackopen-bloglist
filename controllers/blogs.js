@@ -13,6 +13,7 @@ blogsRouter.get("/", async (request, response) => {
 // Add a new blog
 blogsRouter.post("/", middleware.userExtractor, async (request, response) => {
   const body = request.body;
+  
   const decodedToken = request.user;
   if (!body.title || !body.url) {
     return response.status(400).json({ error: "title or url missing" });
