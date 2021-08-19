@@ -10,6 +10,8 @@ blogsRouter.get("/", async (request, response) => {
   const blogs = await Blog.find({})
     .populate("user", { username: 1, name: 1 })
     .populate("comments");
+
+  // console.log("blogs", blogs);
   response.json(blogs);
 });
 
@@ -21,19 +23,17 @@ blogsRouter.post("/", middleware.userExtractor, async (request, response) => {
   if (!body.title || !body.url) {
     return response.status(400).json({ error: "title or url missing" });
   }
-  if (!body.likes) {
-    body.likes = 0;
-  }
+
   const user = await User.findById(decodedToken.id);
 
   const newBlog = { ...body, user: user.id };
-
   const blog = new Blog(newBlog);
-
   const savedBlog = await blog.save();
+  
   user.blogs = user.blogs.concat(savedBlog.id);
   await user.save();
-
+  
+  await savedBlog.populate("user", {username: 1, name: 1}).execPopulate();
   response.status(201).json(savedBlog);
 });
 
@@ -43,7 +43,9 @@ blogsRouter.put("/:id", async (request, response) => {
   const { title, author, url, likes } = request.body;
   const blog = { title, author, url, likes };
 
-  const updatedBlog = await Blog.findByIdAndUpdate(id, blog, { new: true });
+  const updatedBlog = await Blog.findByIdAndUpdate(id, blog, {
+    new: true,
+  }).populate("comments");
   response.json(updatedBlog);
 });
 
